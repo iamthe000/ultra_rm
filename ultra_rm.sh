@@ -1,38 +1,36 @@
 #!/bin/bash
 
-# 対象一覧を取得
 items=(*)
 
-# 要素がない場合
 if [ ${#items[@]} -eq 0 ]; then
-	echo "このディレクトリには何もないよ！"
+	echo "This directory is empty!"
 	exit 0
 fi
 
-echo "=== 現在のファイル/ディレクトリ一覧 ==="
+echo "=== Files and Directories ==="
 for i in "${!items[@]}"; do
 	echo "[$i] ${items[$i]}"
 done
 
 echo ""
-read -p "削除したい番号をスペース区切りで入力してください: " -a selection
+read -p "Enter indexes to delete (space-separated): " -a selection
 
 echo ""
-echo "選択されたもの:"
+echo "Selected items:"
 for idx in "${selection[@]}"; do
 	echo " - ${items[$idx]}"
 done
 
 echo ""
-read -p "本当に削除しますか？(y/N): " confirm
+read -p "Are you sure you want to delete them? (y/N): " confirm
 
 if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-	echo "キャンセルしたよ。"
+	echo "Canceled."
 	exit 0
 fi
 
 echo ""
-echo "削除中…"
+echo "Deleting..."
 
 for idx in "${selection[@]}"; do
 	target="${items[$idx]}"
@@ -41,7 +39,7 @@ for idx in "${selection[@]}"; do
 	else
 		rm "$target"
 	fi
-	echo "削除済み: $target"
+	echo "Deleted: $target"
 done
 
-echo "完了！"
+echo "Done!"
