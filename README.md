@@ -1,3 +1,4 @@
+<a href="ja_README.md">🇯🇵日本語README</a>
 # ultra_rm.sh
 
 `ultra_rm.sh` is a simple interactive shell script that lets you delete multiple files and directories at once.
